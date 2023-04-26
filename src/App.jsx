@@ -1,21 +1,23 @@
-import CardsContainer from './components/CardsContainer';
+import { useEffect, useState } from 'react';
+import { AppContext } from './context/AppContext';
+import AppRouter from './router/AppRouter';
+
+const agendaPoint = 'https://assets.breatheco.de/apis/fake/contact/agenda/crgarcia';
 
 function App() {
+  const [contacts, setContacts] = useState({});
+
+  // Peticion de contactos
+  useEffect(() => {
+    fetch(agendaPoint)
+      .then((resp) => resp.json())
+      .then((data) => setContacts(data))
+      .catch((err) => console.log(err));
+  }, []);
   return (
-    <div className='App'>
-      <div className='container'>
-        <div className='mt-5'>
-          <div className='row justify-content-end'>
-            <div className='col-auto p-0'>
-              <button type='button' className='btn btn-success'>
-                Add new Contact
-              </button>
-            </div>
-          </div>
-          <CardsContainer />
-        </div>
-      </div>
-    </div>
+    <AppContext.Provider value={contacts}>
+      <AppRouter />
+    </AppContext.Provider>
   );
 }
 

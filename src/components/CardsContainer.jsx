@@ -1,18 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext } from 'react';
+import { AppContext } from '../context/AppContext';
 import Card from './Card';
 
-const CardsContainer = () => {
-  const [contacts, setContacts] = useState({});
+// const agendaPoint = 'https://assets.breatheco.de/apis/fake/contact/agenda/crgarcia';
 
-  useEffect(() => {
-    fetch('https://assets.breatheco.de/apis/fake/contact/agenda')
-      .then((resp) => resp.json())
-      .then((data) => setContacts(data));
-  }, []);
+const CardsContainer = () => {
+  // contactos del contexto
+  const contacts = useContext(AppContext);
+
+  // Si no hay contactos
+  if (!contacts.length) return <h1>Loading...</h1>;
 
   return (
     <div className='row mt-4'>
-      {contacts.length && contacts.map((value, index) => <Card key={index} name={value} />)}
+      {contacts.length &&
+        contacts.map((value) => (
+          <Card
+            key={value.id}
+            name={value.full_name}
+            address={value.address}
+            phone={value.phone}
+            mail={value.email}
+          />
+        ))}
       <Card />
     </div>
   );

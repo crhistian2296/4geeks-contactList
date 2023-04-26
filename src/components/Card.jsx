@@ -1,6 +1,9 @@
 import React from 'react';
 
-const Card = ({ name }) => {
+const Card = ({ address, name, mail, phone }) => {
+  // Validacion
+  if (!name) return;
+
   return (
     <div className='card mb-3 w-100'>
       <div className='row g-0'>
@@ -11,24 +14,24 @@ const Card = ({ name }) => {
             height='150px'
             className='img-fluid rounded-5'
             alt='profile image'
-          />
+          />                                                                                                                                                                                                                
         </div>
         <div className='col-md-4 me-auto'>
           <div className='card-body'>
             <h4 className='card-title mt-1 mb-3'>{name}</h4>
             <p className='card-text text-secondary mb-2'>
               <span>
-                <i className='fa fa-regular fa-building'></i> calle random
+                <i className='fa fa-regular fa-building'></i> {address}
               </span>
             </p>
             <p className='card-text text-secondary mb-2'>
               <span>
-                <i className='fa fa-solid fa-phone'></i> 12341234123
+                <i className='fa fa-solid fa-phone'></i> {phone}
               </span>
             </p>
             <p className='card-text text-secondary mb-2'>
               <span>
-                <i className='fa fa-regular fa-at'></i> random@gmail.com
+                <i className='fa fa-regular fa-at'></i> {mail}
               </span>
             </p>
           </div>
