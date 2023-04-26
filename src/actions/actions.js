@@ -20,6 +20,7 @@ export const addUser = (payload = {}) => {
       method: 'POST',
       mode: 'cors',
       redirect: 'follow',
+      body: JSON.stringify(payload),
       headers: {
         'Content-Type': 'application/json',
       },
