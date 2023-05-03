@@ -1,8 +1,7 @@
 import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import AddContact from '../pages/AddContact';
 import Contacts from '../pages/Contacts';
-const AppRouter = ({ children }) => {
-  // *react router v6 convention
+const AppRouter = () => {
   return (
     <div className='App'>
       <div className='container'>
